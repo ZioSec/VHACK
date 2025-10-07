@@ -356,3 +356,7 @@ After completing the challenges or playing around with the kit, you learn more a
 ---
 
 **Remember: The goal is to learn about AI security vulnerabilities to build more secure systems in the future!**
+
+## License
+
+This project is licensed under the MIT License.
