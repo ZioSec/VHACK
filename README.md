@@ -99,6 +99,11 @@ V.H.A.C.K. includes a web interface with advanced functionality:
 
 ### Launch the Platform
 ```bash
+# Start V.H.A.C.K. (web interface)
+docker compose up --build
+# Access at: http://localhost:8000
+```
+
 ### Getting Started
 
 For detailed usage instructions, vulnerability testing examples, and API documentation, see:
