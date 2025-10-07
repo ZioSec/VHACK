@@ -1,8 +1,8 @@
-# VHACK Agent Configuration Guide
+# V.H.A.C.K. Agent Configuration Guide
 
 ## Overview
 
-VHACK operates using **Tools Mode** with real LangChain tools that provide actual system access. This mode is designed for realistic vulnerability testing in isolated environments.
+V.H.A.C.K. operates using **Tools Mode** with real LangChain tools that provide actual system access. This mode is designed for realistic vulnerability testing in isolated environments.
 
 ## Agent Mode
 
@@ -15,17 +15,13 @@ VHACK operates using **Tools Mode** with real LangChain tools that provide actua
 
 ## Usage
 
-### **Command Line**
+### **Web Interface**
 
 ```bash
-# Start VHACK (requires LangChain)
-python vhack.py
-
-# Start with web interface for dynamic security level switching
+# Start V.H.A.C.K. web interface
 python vhack.py --web
-
-# Single query mode
-python vhack.py --query "test message"
+# Or with Docker
+docker compose up --build
 ```
 
 ### **Web Interface**
@@ -35,17 +31,16 @@ python vhack.py --query "test message"
 python vhack.py --web
 
 # Check status via API
-curl http://localhost:5000/api/config
+curl http://localhost:8000/api/config
 ```
 
 ### **Docker**
 
 ```bash
 # Run with Docker
-docker compose run vhack
+docker compose up --build
 
-# Run specific command
-docker compose run vhack poetry run python vhack.py
+# Access at http://localhost:8000
 ```
 
 ## Dependencies
@@ -61,9 +56,9 @@ pip install langchain langchain-openai langgraph psycopg2-binary sqlite3
 ### **Dependency Check:**
 ```bash
 #!/bin/bash
-# Check VHACK dependencies
+# Check V.H.A.C.K. dependencies
 
-echo "🔍 VHACK Dependency Check"
+echo "🔍 V.H.A.C.K. Dependency Check"
 echo "========================"
 
 # Check basic dependencies
@@ -75,9 +70,9 @@ python -c "import langchain; print('✅ LangChain available')" 2>/dev/null || ec
 
 echo ""
 if python -c "import langchain" 2>/dev/null; then
-    echo "🔥 VHACK ready to run (use with caution)"
+    echo "🔥 V.H.A.C.K. ready to run (use with caution)"
 else
-    echo "⚠️ VHACK cannot run without LangChain"
+    echo "⚠️ V.H.A.C.K. cannot run without LangChain"
     echo "💡 Install with: poetry install"
 fi
 ```
@@ -100,7 +95,7 @@ fi
 
 ## Configuration
 
-VHACK supports the main vulnerability configuration:
+V.H.A.C.K. supports the main vulnerability configuration:
 
 - `src/vhack/config/config.yaml` - Main configuration with dynamic security levels
 
@@ -130,10 +125,10 @@ See [CONFIGURATION_GUIDE.md](CONFIGURATION_GUIDE.md) for detailed configuration 
 
 ## Summary
 
-VHACK provides realistic AI vulnerability testing through:
+V.H.A.C.K. provides realistic AI vulnerability testing through:
 - **Real system access** via LangChain tools
 - **Multiple vulnerability scenarios** through configurations
-- **Web and CLI interfaces** for different testing approaches
+- **Web interface** for interactive testing and vulnerability exploration
 - **Comprehensive safety warnings** for responsible use
 
 **Remember: Use Tools Mode only in isolated environments!**

@@ -29,7 +29,7 @@ COPY pyproject.toml ./
 # Install dependencies (base requirements only)
 RUN poetry install --only=main --no-root && rm -rf $POETRY_CACHE_DIR
 
-# Install tools dependencies (required for VHACK to function)
+# Install tools dependencies (required for V.H.A.C.K. to function)
 RUN poetry install --extras tools --no-root
 
 # Copy application code

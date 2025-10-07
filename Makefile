@@ -42,7 +42,7 @@ chat: run
 
 # Start web interface with progressive security levels
 web:
-	@echo "Starting VHACK web interface at http://localhost:5000"
+	@echo "Starting V.H.A.C.K. web interface at http://localhost:8000"
 	@echo "⚠️  WARNING: This is a vulnerable application for educational purposes!"
 	@echo "🔒 Switch between security levels dynamically in the web interface"
 	chmod +x scripts/start_web.sh
@@ -79,7 +79,7 @@ docker-chat:
 	docker compose run --rm vhack poetry run python vhack.py
 
 docker-web:
-	@echo "Starting VHACK web interface with Docker at http://localhost:5000"
+	@echo "Starting V.H.A.C.K. web interface with Docker at http://localhost:8000"
 	@echo "⚠️  WARNING: This is a vulnerable application for educational purposes!"
 	@echo "🔒 Switch between security levels dynamically in the web interface"
 	docker compose --profile web up --build

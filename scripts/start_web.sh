@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# VHACK Web Interface Startup Script
+# V.H.A.C.K. Web Interface Startup Script
 # Simplified for the progressive security level system
 
 echo "=========================================="
-echo "🚨 VHACK - Very Hackable AI Chatbot Kit 🚨"
+echo "🚨 V.H.A.C.K. - Very Hackable AI Chatbot Kit 🚨"
 echo "=========================================="
 echo "⚠️  WARNING: This is a deliberately vulnerable application!"
 echo "⚠️  FOR EDUCATIONAL PURPOSES ONLY!"
@@ -33,8 +33,8 @@ echo "🔧 Installing dependencies..."
 poetry install
 
 echo ""
-echo "🚀 Starting VHACK Web Interface..."
-echo "🌐 Access the application at: http://localhost:5000"
+echo "🚀 Starting V.H.A.C.K. Web Interface..."
+echo "🌐 Access the application at: http://localhost:8000"
 echo "🔒 Try different security levels: Low → Medium → High → Impossible"
 echo ""
 echo "💡 Progressive Security Testing:"

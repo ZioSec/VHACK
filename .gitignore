@@ -3,6 +3,10 @@
 .env.local
 .env.*.local
 
+# Configuration files
+config.yaml
+temp_config_*.yaml
+
 # Python
 __pycache__/
 *.py[cod]

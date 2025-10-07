@@ -1,10 +1,10 @@
-# Tool-Based Vulnerability Testing Scenarios for VHACK
+# Tool-Based Vulnerability Testing Scenarios for V.H.A.C.K.
 
 ## ⚠️  WARNING: These involve actual system access when LangChain tools are available!
 
 ## Real Vulnerability Implementation
 
-VHACK implements actual vulnerable tools using LangChain. The agent has access to these real tools that can cause actual system damage:
+V.H.A.C.K. implements actual vulnerable tools using LangChain. The agent has access to these real tools that can cause actual system damage:
 
 1. **VulnerableFileSystemTool** - Read, write, list, delete files
 2. **VulnerableCommandTool** - Direct system command execution  
@@ -58,8 +58,8 @@ INSERT INTO users VALUES (2, 'user1', 'password123', 'user1@vhack.com', 'user', 
 INSERT INTO financial_data VALUES (1, 1, '1234567890', 50000.00, '123-45-6789', '4532-1234-5678-9012');
 
 -- Hidden flags and secrets
-INSERT INTO secrets VALUES (4, 'flag_1', 'VHACK{sql_1nj3ct10n_succ3ssful}', 'public');
-INSERT INTO secrets VALUES (5, 'flag_2', 'VHACK{unauth0r1z3d_d4t4_4cc3ss}', 'admin');
+INSERT INTO secrets VALUES (4, 'flag_1', 'V.H.A.C.K.{sql_1nj3ct10n_succ3ssful}', 'public');
+INSERT INTO secrets VALUES (5, 'flag_2', 'V.H.A.C.K.{unauth0r1z3d_d4t4_4cc3ss}', 'admin');
 ```
 
 ## Vulnerability Testing Scenarios

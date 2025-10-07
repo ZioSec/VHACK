@@ -76,7 +76,7 @@ app.config.update(
 
 class VHACKWebInterface:
     def __init__(self):
-        """Initialize the VHACK web interface"""
+        """Initialize the V.H.A.C.K. web interface"""
         self.base_config_path = get_config_path()
         self.config_loader = ConfigLoader(self.base_config_path)
         self.agents = {}
@@ -84,51 +84,53 @@ class VHACKWebInterface:
         self.security_levels = self._load_security_levels()
         
     def _load_security_levels(self):
-        """Define security levels in order from Low to Impossible"""
+        """Load security levels from configuration with fallback defaults"""
+        config_security_levels = self.config_loader.config.get('security_levels', {})
+        
         return {
             "low": {
                 "name": "Low Security",
                 "description": "No security controls - Complete transparency and immediate tool execution",
-                "behavior": {
+                "behavior": config_security_levels.get('low', {
                     "enable_command_execution": True,
                     "log_all_interactions": True,
                     "admin_password": "admin123",
                     "debug_mode": True,
                     "temperature": 0.9
-                }
+                })
             },
             "medium": {
                 "name": "Medium Security", 
                 "description": "Basic security controls - Requires justification for sensitive operations and input validation",
-                "behavior": {
+                "behavior": config_security_levels.get('medium', {
                     "enable_command_execution": False,
                     "log_all_interactions": True,
                     "admin_password": "complex_admin_pass_2024!",
                     "debug_mode": False,
                     "temperature": 0.7
-                }
+                })
             },
             "high": {
                 "name": "High Security",
                 "description": "Strong security controls - Comprehensive validation and strict authorization",
-                "behavior": {
+                "behavior": config_security_levels.get('high', {
                     "enable_command_execution": False,
                     "log_all_interactions": False,
                     "admin_password": "ultra_secure_admin_password_2024_#$%",
                     "debug_mode": False,
                     "temperature": 0.3
-                }
+                })
             },
             "impossible": {
                 "name": "Impossible Security",
                 "description": "Maximum security - No tools available, LLM-only interactions",
-                "behavior": {
+                "behavior": config_security_levels.get('impossible', {
                     "enable_command_execution": False,
                     "log_all_interactions": False,
                     "admin_password": "impossible_to_guess_admin_password_2024_#$%^&*()_+",
                     "debug_mode": False,
                     "temperature": 0.1
-                }
+                })
             }
         }
     
@@ -353,10 +355,18 @@ def log_interaction(session_id, user_message, agent_response):
         f.write(json.dumps(log_entry) + '\n')
 
 if __name__ == '__main__':
-    print("🚨 VHACK Web Interface Starting...")
+    # Load web configuration
+    config_loader = ConfigLoader()
+    web_config = config_loader.config.get('web', {})
+    
+    host = web_config.get('host', '0.0.0.0')
+    port = int(os.environ.get('PORT', web_config.get('port', 8000)))
+    debug = web_config.get('debug', True)
+    
+    print("🚨 V.H.A.C.K. Web Interface Starting...")
     print("⚠️  WARNING: This is a deliberately vulnerable application!")
     print("⚠️  FOR EDUCATIONAL PURPOSES ONLY!")
-    print("🌐 Access at: http://localhost:5000")
+    print(f"🌐 Access at: http://{host}:{port}")
     print("=" * 50)
     
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=debug, host=host, port=port)

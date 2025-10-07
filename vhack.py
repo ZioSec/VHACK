@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VHACK Main Launcher
+V.H.A.C.K. Main Launcher
 Entry point for the Very Hackable AI Chatbot Kit
 """
 

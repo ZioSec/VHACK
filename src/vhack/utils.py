@@ -20,15 +20,15 @@ def get_config_path(config_name: str = "config.yaml") -> str:
     current_file = Path(__file__)
     project_root = current_file.parents[2]  # Go up from src/vhack/utils to project root
     
-    # Look for config in the new location
-    config_path = project_root / "src" / "vhack" / "config" / config_name
+    # Look for config in the root directory (new location)
+    config_path = project_root / config_name
     if config_path.exists():
         return str(config_path)
     
     # Fall back to old location for backward compatibility
-    old_config_path = project_root / config_name
+    old_config_path = project_root / "src" / "vhack" / "config" / config_name
     if old_config_path.exists():
         return str(old_config_path)
     
-    # Default to new location
+    # Default to root location
     return str(config_path)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Setting up VHACK (Very Hackable AI Chatbot Kit)..."
+echo "🚀 Setting up V.H.A.C.K. (Very Hackable AI Chatbot Kit)..."
 
 # Check if Python is installed
 if ! command -v python3 &> /dev/null; then
@@ -21,21 +21,22 @@ fi
 echo "📦 Installing dependencies with Poetry..."
 poetry install
 
-# Create .env file if it doesn't exist
-if [ ! -f .env ]; then
-    echo "🔧 Creating .env file..."
-    cp .env.example .env
-    echo "⚠️  Please edit .env and add your OpenRouter API key!"
+# Create config.yaml file if it doesn't exist
+if [ ! -f config.yaml ]; then
+    echo "🔧 Creating config.yaml file..."
+    cp config.example.yaml config.yaml
+    echo "✅ Configuration file created from example"
+    echo "⚠️  Please edit config.yaml and add your API keys in the api_keys section!"
 else
-    echo "✅ .env file already exists"
+    echo "✅ config.yaml file already exists"
 fi
 
 echo "✅ Setup complete!"
 echo ""
 echo "Next steps:"
-echo "1. Edit .env and add your OpenRouter API key"
-echo "2. Run: poetry run python vhack.py"
+echo "1. Edit config.yaml and add your API keys in the api_keys section"
+echo "2. Run: poetry run python vhack.py --web"
 echo "   Or activate the virtual environment: poetry shell"
-echo "   Then run: python vhack.py"
+echo "   Then run: python vhack.py --web"
 echo ""
-echo "Get your API key from: https://openrouter.ai/keys"
+echo "Get your OpenRouter API key from: https://openrouter.ai/keys"

@@ -1,8 +1,16 @@
-# VHACK - Very Hackable AI Chatbot Kit
+# V.H.A.C.K. - Very Hackable AI Chatbot Kit
 
-![VHACK Logo](vhack.png)
+![V.H.A.C.K. Logo](vhack.png)
 
-**WARNING: This is a deliberately vulnerable AI agent for educational purposes only!**
+**WARNING: This is a deliberately### Launch the Platform
+```bash
+# Start V.H.A.C.K. (web interface)
+cp .env.example .env
+# Edit .env with your API key (OpenRouter by default)
+docker compose up --build
+
+# Access at: http://localhost:8000
+```le AI agent for educational purposes only!**
 
 A vulnerable AI agent designed to demonstrate various security flaws in agentic AI systems using real LangChain tools with actual system access. Features a modern web interface with real-time security level switching, session persistence, and markdown-formatted conversations.
 
@@ -18,7 +26,8 @@ A vulnerable AI agent designed to demonstrate various security flaws in agentic 
 
 ## Features
 
-- **Modern Web Interface**: Real-time security level switching with REST API
+- **Web Interface**: Real-time security level switching with REST API
+- **Session Persistence**: Conversations survive browser refreshes and navigation  
 - **Markdown Support**: Rich text formatting with toggle between raw and formatted views
 - **Real Tool Integration**: LangChain tools with actual system access
 - **Progressive Security Levels**: Low/Medium/High/Impossible difficulty settings
@@ -26,11 +35,10 @@ A vulnerable AI agent designed to demonstrate various security flaws in agentic 
 - **Docker Support**: Containerized deployment for consistent testing environments
 - **REST API**: Programmatic access for automation and integration
 - **Real-time Updates**: No page refreshes needed for security level changes
-- **Dual Interface**: Both web and CLI modes available
 
 ## Security Levels
 
-VHACK implements four security configurations that progressively implement stronger defenses based on OWASP guidelines:
+V.H.A.C.K. implements four security configurations that progressively implement stronger defenses based on OWASP guidelines:
 
 ### Low Security
 - **No security controls** - Complete transparency and immediate tool execution
@@ -66,7 +74,7 @@ You can switch between these levels in real-time using the web interface without
 
 ## Web Interface Features
 
-VHACK includes a web interface with advanced functionality:
+V.H.A.C.K. includes a web interface with advanced functionality:
 
 ### 💬 **Chat Features**
 - **Session Persistence**: Conversations survive browser refreshes and navigation
@@ -99,12 +107,24 @@ VHACK includes a web interface with advanced functionality:
 
 ### Launch the Platform
 ```bash
-# Start VHACK web interface (recommended)
-cp .env.example .env
-# Edit .env with your API key (OpenRouter by default)
-docker compose --profile web up --build
+### Getting Started
 
-# Access at: http://localhost:5000
+For detailed usage instructions, vulnerability testing examples, and API documentation, see:
+
+- **[docs/VULNERABILITY_GUIDE.md](docs/VULNERABILITY_GUIDE.md)** - Complete vulnerability testing guide with examples
+- **[docs/HTTP_API.md](docs/HTTP_API.md)** - REST API documentation and programmatic access
+- **[docs/CONFIGURATION_GUIDE.md](docs/CONFIGURATION_GUIDE.md)** - Advanced configuration options
+- **[docs/TOOL_VULNERABILITIES.md](docs/TOOL_VULNERABILITIES.md)** - Specific tool vulnerability details
+
+### Quick Command Reference
+
+```bash
+# Start V.H.A.C.K. (web interface)
+docker compose up --build
+# Access at: http://localhost:8000
+
+# Local development
+poetry run python vhack.py --web
 ```
 
 ### Interface Features
@@ -113,41 +133,21 @@ docker compose --profile web up --build
 - **Markdown Rendering**: Rich text formatting with raw/formatted toggle
 - **Progressive Security Testing**: Four distinct security control levels
 
-### Available Modes
+### V.H.A.C.K. Interface
 
-#### Web Interface (Recommended)
-- **vhack-web** - Web interface with REST API (port 8000)
+- **Web Interface**: Modern browser-based interface with REST API (port 8000)
 - **Full HTTP API**: REST endpoints for programmatic access
 - **Interactive UI**: Real-time security level switching, session persistence
-- **Usage**: `docker compose --profile web up --build`
+- **Usage**: `docker compose up --build`
 - **Access**: http://localhost:8000
 
-#### CLI Interface  
-- **vhack-main** - Command-line interface for terminal users
-- **Interactive Terminal**: Direct agent conversation in terminal
-- **No HTTP API**: Terminal-only interaction
-- **Usage**: `docker compose up --build` or `docker attach vhack-main`
-- **Access**: Docker attach/exec or interactive terminal
-
-### Alternative Deployment Options
-
-#### Local Development
+### Local Development
 ```bash
 # Setup and run locally
 cp .env.example .env
 # Edit .env with your API key
 poetry install
-poetry run python vhack.py --web  # Web interface
-poetry run python vhack.py        # CLI interface
-```
-
-#### Docker CLI Mode
-```bash
-# Quick CLI setup
-cp .env.example .env
-# Edit .env with your API key
-docker compose up --build
-# Interactive terminal interface
+poetry run python vhack.py --web
 ```
 
 
@@ -179,16 +179,10 @@ make docker-chat
    # Edit .env and add your OpenRouter API key
    ```
 
-2. **Start web interface:**
-   ```bash
-   docker compose --profile web up --build
-   # Access at: http://localhost:8000
-   ```
-
-3. **Or start CLI mode:**
+2. **Start V.H.A.C.K.:**
    ```bash
    docker compose up --build
-   # Interactive chat interface
+   # Access at: http://localhost:8000
    ```
 
 ### Option 2: Local Development
@@ -203,24 +197,21 @@ make docker-chat
    poetry install
    ```
 
-3. **Configure API key:**
+3. **Configure settings:**
    ```bash
-   cp .env.example .env
-   # Edit .env and add your API key (OpenRouter by default)
+   cp config.example.yaml config.yaml
+   # Edit config.yaml and add your API keys in the api_keys section
    ```
 
 4. **Run the agent:**
    ```bash
-   # Start VHACK web interface
+   # Start V.H.A.C.K. web interface
    poetry run python vhack.py --web
    
-   # Start VHACK CLI interface
-   poetry run python vhack.py
-   
    # Tools mode (dangerous, real system access)
-   poetry run python vhack.py --tools
+   poetry run python vhack.py --web --tools
    
-   # Single query mode
+   # Single query mode (for testing)
    poetry run python vhack.py --query "What is artificial intelligence?"
    ```
 
@@ -229,10 +220,10 @@ make docker-chat
 ```
 vhack/
 ├── vhack.py                  # Main entry point
+├── config.example.yaml       # Example configuration file
 ├── src/vhack/               # Core application
 │   ├── config/             # Configuration management
-│   │   ├── config_loader.py
-│   │   └── config.yaml
+│   │   └── config_loader.py
 │   ├── core/               # Core functionality
 │   │   └── launcher.py
 │   ├── interfaces/         # Interface implementations
@@ -257,7 +248,17 @@ vhack/
 
 ## Configuration
 
-### Main Configuration (`src/vhack/config/config.yaml`)
+### Setup Configuration
+
+1. **Copy example configuration:**
+   ```bash
+   cp config.example.yaml config.yaml
+   ```
+
+2. **Add your API keys to `config.yaml`:**
+   Edit the `api_keys` section in `config.yaml` and add your API keys
+
+### Main Configuration (`config.yaml`)
 
 ```yaml
 # Agent settings
@@ -296,7 +297,7 @@ vulnerabilities:
 
 ### AI Provider Configuration
 
-VHACK supports multiple AI providers. Configure your preferred provider in `config.yaml`:
+V.H.A.C.K. supports multiple AI providers. Configure your preferred provider in `config.yaml`:
 
 ```yaml
 # Choose your AI provider (default: openrouter)

@@ -1,4 +1,4 @@
-/* VHACK JavaScript - Session Management and UI Interactions */
+/* V.H.A.C.K. JavaScript - Session Management and UI Interactions */
 
 class VHACKInterface {
     constructor() {
@@ -65,7 +65,7 @@ class VHACKInterface {
         }
         
         // Add session ID to headers
-        options.headers['X-VHACK-Session-ID'] = sessionId;
+        options.headers['X-V.H.A.C.K.-Session-ID'] = sessionId;
         
         return fetch(url, options);
     }

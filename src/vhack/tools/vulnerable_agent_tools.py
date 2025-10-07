@@ -440,47 +440,50 @@ class VulnerableAIAgentWithTools:
         
         try:
             if provider == 'openai':
-                api_key = os.getenv("OPENAI_API_KEY")
+                api_key = self.config.get('api_keys', {}).get('openai') or os.getenv("OPENAI_API_KEY")
                 if not api_key:
-                    raise ValueError("OPENAI_API_KEY environment variable not set")
+                    raise ValueError("OpenAI API key not found in config.yaml or OPENAI_API_KEY environment variable")
+                openai_config = self.config.get('openai', {})
                 return ChatOpenAI(
-                    model=self.config['openai']['model'],
+                    model=openai_config.get('model', 'gpt-4o-mini'),
                     openai_api_key=api_key,
-                    temperature=self.config['openai'].get('temperature', 0.8),
-                    max_tokens=self.config['openai'].get('max_tokens', 2000)
+                    temperature=openai_config.get('temperature', 0.8),
+                    max_tokens=openai_config.get('max_tokens', 2000)
                 )
             
             elif provider == 'anthropic':
                 from langchain_anthropic import ChatAnthropic
-                api_key = os.getenv("ANTHROPIC_API_KEY")
+                api_key = self.config.get('api_keys', {}).get('anthropic') or os.getenv("ANTHROPIC_API_KEY")
                 if not api_key:
-                    raise ValueError("ANTHROPIC_API_KEY environment variable not set")
+                    raise ValueError("Anthropic API key not found in config.yaml or ANTHROPIC_API_KEY environment variable")
+                anthropic_config = self.config.get('anthropic', {})
                 return ChatAnthropic(
-                    model=self.config['anthropic']['model'],
+                    model=anthropic_config.get('model', 'claude-3-haiku-20240307'),
                     anthropic_api_key=api_key,
-                    temperature=self.config['anthropic'].get('temperature', 0.8),
-                    max_tokens=self.config['anthropic'].get('max_tokens', 2000)
+                    temperature=anthropic_config.get('temperature', 0.8),
+                    max_tokens=anthropic_config.get('max_tokens', 2000)
                 )
             
             elif provider == 'huggingface':
                 from langchain_community.llms import HuggingFaceHub
-                api_key = os.getenv("HUGGINGFACE_API_KEY")
+                api_key = self.config.get('api_keys', {}).get('huggingface') or os.getenv("HUGGINGFACE_API_KEY")
                 if not api_key:
-                    raise ValueError("HUGGINGFACE_API_KEY environment variable not set")
+                    raise ValueError("HuggingFace API key not found in config.yaml or HUGGINGFACE_API_KEY environment variable")
+                huggingface_config = self.config.get('huggingface', {})
                 return HuggingFaceHub(
-                    repo_id=self.config['huggingface']['model'],
+                    repo_id=huggingface_config.get('model', 'microsoft/DialoGPT-large'),
                     huggingfacehub_api_token=api_key,
                     model_kwargs={
-                        "temperature": self.config['huggingface'].get('temperature', 0.8),
-                        "max_length": self.config['huggingface'].get('max_tokens', 2000)
+                        "temperature": huggingface_config.get('temperature', 0.8),
+                        "max_length": huggingface_config.get('max_tokens', 2000)
                     }
                 )
             
             elif provider == 'openrouter':
                 # Default OpenRouter configuration
-                api_key = os.getenv("OPENROUTER_API_KEY")
+                api_key = self.config.get('api_keys', {}).get('openrouter') or os.getenv("OPENROUTER_API_KEY")
                 if not api_key:
-                    raise ValueError("OPENROUTER_API_KEY environment variable not set")
+                    raise ValueError("OpenRouter API key not found in config.yaml or OPENROUTER_API_KEY environment variable")
                 return ChatOpenAI(
                     model=self.config['openrouter']['model'],
                     openai_api_key=api_key,
@@ -498,9 +501,9 @@ class VulnerableAIAgentWithTools:
             print(f"⚠️  Failed to initialize {provider} provider: {e}")
             print(f"🔄 Falling back to OpenRouter...")
             # Fallback to OpenRouter
-            api_key = os.getenv("OPENROUTER_API_KEY")
+            api_key = self.config.get('api_keys', {}).get('openrouter') or os.getenv("OPENROUTER_API_KEY")
             if not api_key:
-                raise ValueError("Fallback failed: OPENROUTER_API_KEY environment variable not set")
+                raise ValueError("Fallback failed: OpenRouter API key not found in config.yaml or OPENROUTER_API_KEY environment variable")
             return ChatOpenAI(
                 model=self.config['openrouter']['model'],
                 openai_api_key=api_key,

@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# VHACK Progressive Security Testing Script
+# V.H.A.C.K. Progressive Security Testing Script
 # Simplified launcher for different security levels and deployment modes
 
 set -e
 
-MODE=${1:-"web"}
-SECURITY_LEVEL=${2:-"low"}
+SECURITY_LEVEL=${1:-"low"}
 
 # Colors for output
 RED='\033[0;31m'
@@ -16,15 +15,11 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 show_help() {
-    echo -e "${BLUE}VHACK Progressive Security Testing Launcher${NC}"
+    echo -e "${BLUE}V.H.A.C.K. Security Testing Launcher${NC}"
     echo ""
-    echo "Usage: $0 [mode] [security_level]"
+    echo "Usage: $0 [security_level]"
     echo ""
-    echo -e "${YELLOW}Available modes:${NC}"
-    echo "  web       - Web interface with dynamic security level switching (default)"
-    echo "  cli       - Command line interface"
-    echo ""
-    echo -e "${YELLOW}Available security levels (web mode only):${NC}"
+    echo -e "${YELLOW}Available security levels:${NC}"
     echo "  low       - No security controls (default)"
     echo "  medium    - Basic input validation and authorization"
     echo "  high      - Strong security controls and authorization"
@@ -42,7 +37,7 @@ show_help() {
     echo "  • Try 'Impossible' for pure prompt injection testing"
     echo ""
     echo -e "${YELLOW}Web Interface Access:${NC}"
-    echo "  http://localhost:5000"
+    echo "  http://localhost:8000"
 }
 
 if [[ "$MODE" == "help" || "$MODE" == "-h" || "$MODE" == "--help" ]]; then
@@ -62,9 +57,9 @@ case $MODE in
         ;;
 esac
 
-echo -e "${GREEN}Starting VHACK in ${MODE} mode...${NC}"
+echo -e "${GREEN}Starting V.H.A.C.K. in ${MODE} mode...${NC}"
 if [[ "$MODE" == "web" ]]; then
-    echo -e "${BLUE}Web interface will be available at: http://localhost:5000${NC}"
+    echo -e "${BLUE}Web interface will be available at: http://localhost:8000${NC}"
     echo -e "${YELLOW}You can switch between security levels dynamically in the web interface${NC}"
 fi
 echo ""

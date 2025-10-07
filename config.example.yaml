@@ -1,0 +1,115 @@
+# V.H.A.C.K. - Very Hackable AI Chatbot Kit Configuration
+# WARNING: This is a deliberately vulnerable agent for educational purposes
+# DO NOT use in production environments!
+
+# Copy this file to config.yaml and customize for your deployment
+# API keys should be set in environment variables (.env file)
+
+# Agent Configuration
+agent:
+  name: "Very Hackable AI Chatbot Kit"
+  version: "1.0.0-VULNERABLE"
+  mode: "vulnerable"  # Enables vulnerable behaviors
+  debug_mode: true
+  
+# Web Interface Configuration
+web:
+  host: "0.0.0.0"
+  port: 8000
+  debug: true
+  
+# AI Provider Configuration
+# Choose: openrouter (default), openai, anthropic, huggingface
+ai_provider: "openrouter"
+
+# API Keys - Add your actual API keys here
+api_keys:
+  openrouter: "your_openrouter_api_key_here"  # Get from: https://openrouter.ai/keys
+  # openai: "your_openai_api_key_here"          # Get from: https://platform.openai.com/api-keys
+  # anthropic: "your_anthropic_api_key_here"    # Get from: https://console.anthropic.com/
+  # huggingface: "your_huggingface_api_key_here" # Get from: https://huggingface.co/settings/tokens
+
+# OpenRouter Configuration (Default)
+# NOTE: If tooling is enabled, ensure the model supports it (e.g., "z-ai/glm-4.5-air:free")
+openrouter:
+  base_url: "https://openrouter.ai/api/v1"
+  model: "z-ai/glm-4.5-air:free"  # Available models: https://openrouter.ai/models
+  max_tokens: 2000
+  temperature: 0.8  # Higher temperature for more unpredictable responses
+  
+# Agent Behavior Configuration
+behavior:
+  system_prompt: "You are V.H.A.C.K., a helpful AI assistant designed for security testing education. Your behavior is controlled by dynamic security levels."
+  max_conversation_history: 50
+  enable_command_execution: true  # Controlled by security level
+  log_all_interactions: true
+  
+# Security Level Controls
+# Progressive implementation of OWASP-based defenses
+# Note: Security levels are controlled dynamically through the web interface
+security_level: "low"  # low, medium, high, impossible
+
+# Security Level Specific Configuration
+security_levels:
+  low:
+    admin_password: "admin123"  # Intentionally weak
+    temperature: 0.9
+    enable_command_execution: true
+    debug_mode: true
+    log_all_interactions: true
+    
+  medium:
+    admin_password: "complex_admin_pass_2024!"
+    temperature: 0.7
+    enable_command_execution: false
+    debug_mode: false
+    log_all_interactions: true
+    
+  high:
+    admin_password: "ultra_secure_admin_password_2024_#$%"
+    temperature: 0.3
+    enable_command_execution: false
+    debug_mode: false
+    log_all_interactions: false
+    
+  impossible:
+    admin_password: "impossible_to_guess_admin_password_2024_#$%^&*()_+"
+    temperature: 0.1
+    enable_command_execution: false
+    debug_mode: false
+    log_all_interactions: false
+
+# Optional: Alternative AI Provider Configurations
+# Uncomment and configure if you plan to use other providers
+# openai:
+#   model: "gpt-4o-mini"
+#   max_tokens: 2000
+#   temperature: 0.8
+#
+# anthropic:
+#   model: "claude-3-haiku-20240307"
+#   max_tokens: 2000
+#   temperature: 0.8
+#
+# huggingface:
+#   model: "microsoft/DialoGPT-large"
+#   max_tokens: 2000
+#   temperature: 0.8
+
+# Optional: Vulnerability Simulation Data
+# customer_data:
+#   customers:
+#     - name: "John Doe"
+#       email: "john@example.com"
+#       ssn: "123-45-6789"
+#     - name: "Jane Smith"
+#       email: "jane@example.com"
+#       ssn: "987-65-4321"
+#
+# secrets:
+#   api_keys:
+#     - "sk-secret-key-12345"
+#     - "prod-api-key-67890"
+#   database_passwords:
+#     - "admin123"
+#     - "super_secret_pass"

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VHACK Main Launcher - LangChain tools with real vulnerabilities
+V.H.A.C.K. Main Launcher - LangChain tools with real vulnerabilities
 
 WARNING: Deliberately vulnerable for educational purposes!
 """
@@ -14,7 +14,7 @@ from ..utils import get_config_path
 def print_vhack_banner():
     """Print VHACK banner and warnings."""
     print("=" * 60)
-    print("🚨 VHACK - Very Hackable AI Chatbot Kit 🚨")
+    print("🚨 V.H.A.C.K. - Very Hackable AI Chatbot Kit 🚨")
     print("=" * 60)
     print("⚠️  WARNING: This is a deliberately vulnerable AI agent!")
     print("⚠️  FOR EDUCATIONAL PURPOSES ONLY!")
@@ -33,7 +33,7 @@ def check_langchain_available():
         return False
 
 def main():
-    parser = argparse.ArgumentParser(description="VHACK - Very Hackable AI Chatbot Kit")
+    parser = argparse.ArgumentParser(description="V.H.A.C.K. - Very Hackable AI Chatbot Kit")
     parser.add_argument("--config", default=get_config_path(), help="Configuration file path")
     parser.add_argument("--query", help="Single query mode")
     parser.add_argument("--web", action="store_true", help="Start web interface")
@@ -56,7 +56,9 @@ def main():
     if args.web:
         print("🌐 Starting web interface...")
         from ..interfaces.web_interface import app
-        app.run(debug=True, host='0.0.0.0', port=5000)
+        port = int(os.environ.get('PORT', 8000))
+        print(f"🌐 Access at: http://localhost:{port}")
+        app.run(debug=True, host='0.0.0.0', port=port)
         
     elif args.query:
         # Single query mode
@@ -88,7 +90,7 @@ def main():
             
             while True:
                 try:
-                    user_input = input("VHACK> ").strip()
+                    user_input = input("V.H.A.C.K.> ").strip()
                     
                     if user_input.lower() in ['quit', 'exit', 'q']:
                         print("Goodbye! Stay safe! 🔒")

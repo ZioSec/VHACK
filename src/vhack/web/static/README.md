@@ -1,6 +1,6 @@
-# VHACK Web Interface Assets
+# V.H.A.C.K. Web Interface Assets
 
-This directory contains the static assets for the VHACK web interface.
+This directory contains the static assets for the V.H.A.C.K. web interface.
 
 ## Structure
 
