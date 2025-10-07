@@ -2,15 +2,7 @@
 
 ![V.H.A.C.K. Logo](vhack.png)
 
-**WARNING: This is a deliberately### Launch the Platform
-```bash
-# Start V.H.A.C.K. (web interface)
-cp .env.example .env
-# Edit .env with your API key (OpenRouter by default)
-docker compose up --build
-
-# Access at: http://localhost:8000
-```le AI agent for educational purposes only!**
+**WARNING: This is a deliberately vulnerable AI agent for educational purposes only!**
 
 A vulnerable AI agent designed to demonstrate various security flaws in agentic AI systems using real LangChain tools with actual system access. Features a modern web interface with real-time security level switching, session persistence, and markdown-formatted conversations.
 
@@ -356,7 +348,3 @@ After completing the challenges or playing around with the kit, you learn more a
 ---
 
 **Remember: The goal is to learn about AI security vulnerabilities to build more secure systems in the future!**
-
-## License
-
-This project is licensed under the MIT License.
